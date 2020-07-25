@@ -1,7 +1,5 @@
 package com.qa.mobile.utils;
 
-import java.io.IOException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +9,8 @@ import com.qa.mobile.base.MobileBase;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.events.api.general.AppiumWebDriverEventListener;
+
+
 
 public class MobEventListener extends MobileBase implements AppiumWebDriverEventListener {				
 		

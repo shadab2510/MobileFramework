@@ -13,6 +13,7 @@ import com.qa.mobile.utils.MobileTestUtils;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
 
 public class MobileBase {
 	
@@ -20,8 +21,42 @@ public class MobileBase {
 	public static File dir;
 	public static File app;
 	public static Properties prop;
+	public static AppiumDriverLocalService service;
 	
-	MobileTestUtils utils = new MobileTestUtils();
+	
+	public static void StartEmulator()
+	{
+		try{
+			//Runtime.getRuntime().exec(System.getProperty("user.dir")+"src\\main\\java\\emulator.bat");
+			Runtime.getRuntime().exec("src\\\\main\\\\java\\\\emulator.bat");
+		MobileTestUtils utils = new MobileTestUtils();
+		utils.StaticWait();
+		}
+		catch(Exception e)
+		{
+			System.out.println("cause is"+" "+e.getCause());
+			System.out.println("message is"+" "+e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	public  static AppiumDriverLocalService startAppiumServer()
+	
+
+	{  
+		MobileTestUtils util = new MobileTestUtils();
+	     boolean flag=util.checkIfServerIsRunnning(4723);
+	
+		if(!flag)
+		{
+		service=AppiumDriverLocalService.buildDefaultService();
+		service.start();
+		}
+		return service;
+	}
+	
 	
 	public void Initialization()
 	{
@@ -50,14 +85,20 @@ public class MobileBase {
 		
 		//ds.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
 	
-		ds.setCapability(MobileCapabilityType.DEVICE_NAME, prop.getProperty("device_Name"));
+	
+	    String device= prop.getProperty("device_Name");
+	    if(device.contains("emulator"))
+	    {
+	    	StartEmulator();
+	    }
+		ds.setCapability(MobileCapabilityType.DEVICE_NAME, device);
 		ds.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
 		//ds.setCapability(MobileCapabilityType.BROWSER_NAME, prop.getProperty("browser_Name"));
 		
 		
 		URL url= new URL (prop.getProperty("appiumServerURL"));
 		driver = new AndroidDriver<AndroidElement>(url,ds);
-		driver.manage().timeouts().implicitlyWait(utils.IMPLICIT_WAIT, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		//driver.get(prop.getProperty("url"));
 	}
 	

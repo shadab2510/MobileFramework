@@ -60,7 +60,7 @@ public class MobileHomePage extends MobileBase {
 	
 	
 	  public void Accessibility() 
-	  { driver.findElement(By.xpath("//android.widget.TextView[@text='Accessibility']")).click(); 
+	  { driver.findElement(By.xpath("//android.widget.TextView[@text='Accessiblity']")).click(); 
 	  
 	  }
 	 
