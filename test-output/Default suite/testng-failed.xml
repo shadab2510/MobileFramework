@@ -5,7 +5,7 @@
     <classes>
       <class name="com.qa.mobile.tests.MobileHomePageTest">
         <methods>
-          <include name="clickingOnAccessiblity"/>
+          <include name="VerifyHomePage"/>
           <include name="TearDown"/>
           <include name="SetUp"/>
         </methods>

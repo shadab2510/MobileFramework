@@ -7,18 +7,21 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.qa.mobile.base.MobileBase;
 
+import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class MobileHomePage extends MobileBase {
 
 	
-	@FindBy(xpath="//android.widget.TextView[text()='API Demos']")
+	@AndroidFindBy(xpath="//android.widget.TextView[text()='API Demos']")
 	public WebElement APIDemos;
+	
 	
 	/*
 	 * @AndroidFindBy(xpath="//android.widget.TextView[@text='Accessibility']")
 	 * public WebElement Accessibility;
 	 */
+	 
 	
 	
 	
@@ -55,10 +58,12 @@ public class MobileHomePage extends MobileBase {
 	public WebElement Views;
 	
 	
-	public  void Accessibility()
-	{
-		driver.findElement(By.xpath("//android.widget.TextView[@text='Accessibility']")).click();
-	}
+	
+	  public void Accessibility() 
+	  { driver.findElement(By.xpath("//android.widget.TextView[@text='Accessibility']")).click(); 
+	  
+	  }
+	 
 	
 	public MobileHomePage()
 	{
@@ -77,10 +82,12 @@ public class MobileHomePage extends MobileBase {
 		return APIDemos.isDisplayed();
 	}
 	
+	
 	/*
 	 * public MobileAccessibilityPage clickingOnAccessibility() {
 	 * Accessibility.click(); return new MobileAccessibilityPage(); }
 	 */
+	 
 	
 	
 	public MobileViewsPage clickingOnViews()
