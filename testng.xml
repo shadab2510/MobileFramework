@@ -4,6 +4,7 @@
 
 <listeners>
 		<listener class-name="com.qa.mobile.utils.Listeners" />
+		<listener class-name="com.qa.mobile.extentReport.ExtentReporterNG" />
 	</listeners>
   <test thread-count="5" name="Test">
     <classes>
